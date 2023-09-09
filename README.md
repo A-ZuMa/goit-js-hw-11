@@ -1,3 +1,11 @@
+# Модуль 11. Заняття 21. CRUD Асинхронні функції
+
+https://www.youtube.com/watch?v=XiCQOTMt6JA
+
+# Модуль 11. Заняття 22. CRUD Асинхронні функції
+
+https://www.youtube.com/watch?v=SmI80p3MSNo
+
 # Parcel template
 
 Этот проект был создан при помощи Parcel. Для знакомства и настройки
