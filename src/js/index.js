@@ -8,19 +8,19 @@ import { fetchImg } from './searcher.js';
 const elements = {
   form: document.querySelector('#search-form'),
   gallery: document.querySelector('.gallery'),
-  loadBtn: document.querySelector('.load-more'),
+  moreBtn: document.querySelector('.load-more'),
 };
 
 elements.form.addEventListener('submit', handlerSubmit);
-elements.loadBtn.addEventListener('click', handlerClickLoad);
+elements.moreBtn.addEventListener('click', handlerClickLoad);
 
 let page;
 let onPage;
-let onPageValue = 40;
+// let onPageValue = 40;
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
-  elements.loadBtn.classList.add('hidden');
+  elements.moreBtn.classList.add('hidden');
   const { searchQuery } = evt.currentTarget;
   page = 1;
   onPage = 40;
@@ -39,7 +39,7 @@ async function handlerSubmit(evt) {
       });
 
       if (result.totalHits > onPage) {
-        elements.loadBtn.classList.remove('hidden');
+        elements.moreBtn.classList.remove('hidden');
         queryValue = searchQuery.value;
         return queryValue;
       }
@@ -65,11 +65,13 @@ async function handlerClickLoad() {
     let lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
       captionDelay: 250,
+      nav: 'false',
+      navText: 'arrows',
     });
     lightbox.refresh();
 
     if (Math.ceil(result.totalHits / onPage) === page) {
-      elements.loadBtn.classList.add('hidden');
+      elements.moreBtn.classList.add('hidden');
       Notify.info("We're sorry, but you've reached the end of search results.");
     }
   } catch {
@@ -89,7 +91,7 @@ function createMarkup(arr) {
         comments,
         downloads,
       }) => `<div class="cardset">
-      <a class="photo-card-link" href="${largeImageURL}">
+      <a class="card-image" href="${largeImageURL}">
         <img src="${webformatURL}" alt="${tags}" loading="lazy" />
         <div class="cardData">
             <p class="cardData-item">
