@@ -20,15 +20,16 @@ let onPage;
 async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
-  const { searchQuery } = evt.target;
+  const { findValue } = evt.target;
+  console.log('Evt-Target', evt.target);
   page = 1;
   onPage = 40;
   try {
-    const result = await fetchImg(searchQuery.value, onPage, page);
+    const result = await fetchImg(findValue.value, onPage, page);
 
     if (result.hits.length > 0) {
       Notify.success(`Hooray! We found ${result.totalHits} images.`);
-      console.log(result.hits.length);
+      //   console.log(result.hits.length);
       elements.gallery.innerHTML = createMarkup(result.hits);
 
       lightScroll();
@@ -40,7 +41,7 @@ async function handlerSubmit(evt) {
 
       if (result.totalHits > onPage) {
         elements.moreBtn.classList.remove('hidden');
-        queryValue = searchQuery.value;
+        queryValue = findValue.value;
         return queryValue;
       }
     } else {
@@ -51,7 +52,7 @@ async function handlerSubmit(evt) {
     }
   } catch {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    console.log('Length-', result.hits.length);
+    // console.log('Length-', result.hits.length);
   }
 }
 
