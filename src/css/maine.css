@@ -3,9 +3,12 @@
 :root {
   --mainColor: #11998e;
   --secondColor: #38ef7d;
+  --mainFont: 'Roboto', sans-serif;
 }
-
+body {
+}
 .container {
+  font-family: var(--mainFont);
   max-width: 1570px;
   position: relative;
   width: 100%;
@@ -73,6 +76,7 @@ button.hidden {
   display: none;
 }
 input {
+  font-family: var(--mainFont);
   max-width: 100%;
   margin-right: 200px;
   font-size: 20px;

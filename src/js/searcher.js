@@ -5,10 +5,10 @@ import axios from 'axios';
 const BASE_URL = 'https://pixabay.com/api/';
 
 // Початковий запрос
-const fetchImg = async (searchQuery, onPage, currentPage) => {
+const fetchImg = async (findValue, onPage, currentPage) => {
   const options = new URLSearchParams({
     key: '39143786-0ff2c921daf19103e1ab64df2',
-    q: searchQuery,
+    q: findValue,
     image_type: 'photo',
     orientation: 'horizontal',
     safesearch: true,

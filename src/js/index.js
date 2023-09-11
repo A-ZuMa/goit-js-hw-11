@@ -22,14 +22,21 @@ async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
   const { findValue } = evt.target;
+  console.dir(findValue);
+  console.log(findValue.value);
   // queryValue = findValue.value; // Оновлено значення queryValue
   page = 1;
-
+  if (findValue.value === '') {
+    Notify.warning('Hey! Please, type something to start.');
+    return;
+  }
   try {
     const result = await fetchImg(findValue.value, onPage, page);
 
     if (result.hits.length > 0) {
-      Notify.success(`Hooray! We found ${result.totalHits} images.`);
+      Notify.success(
+        `Yeeeeeh! Founded ${result.totalHits} photos in our base.`
+      );
       elements.gallery.innerHTML = createMarkup(result.hits);
 
       lightScroll(); // Плавний скрол з опціями
