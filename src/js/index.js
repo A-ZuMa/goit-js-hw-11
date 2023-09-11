@@ -16,12 +16,11 @@ elements.moreBtn.addEventListener('click', handlerClickLoad);
 
 let page;
 let onPage;
-// let onPageValue = 40;
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
-  const { searchQuery } = evt.currentTarget;
+  const { searchQuery } = evt.target;
   page = 1;
   onPage = 40;
   try {
@@ -29,6 +28,7 @@ async function handlerSubmit(evt) {
 
     if (result.hits.length > 0) {
       Notify.success(`Hooray! We found ${result.totalHits} images.`);
+      console.log(result.hits.length);
       elements.gallery.innerHTML = createMarkup(result.hits);
 
       lightScroll();
@@ -51,6 +51,7 @@ async function handlerSubmit(evt) {
     }
   } catch {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
+    console.log('Length-', result.hits.length);
   }
 }
 
@@ -65,8 +66,8 @@ async function handlerClickLoad() {
     let lightbox = new SimpleLightbox('.gallery a', {
       captionsData: 'alt',
       captionDelay: 250,
-      nav: 'false',
-      navText: 'arrows',
+      //   nav: 'false',
+      //   navText: 'arrows',
     });
     lightbox.refresh();
 

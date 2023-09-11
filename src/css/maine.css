@@ -25,7 +25,6 @@ img {
   object-fit: cover;
 }
 
-/* button { */
 button.load-more,
 .search-btn {
   margin: 0;
@@ -66,8 +65,8 @@ button.load-more,
   box-shadow: 0px 0px 2px 2px rgb(232, 134, 22);
 }
 button:hover {
-  background-position: right center;
   color: #78ebae;
+  transition: 0.7s;
   text-decoration: none;
 }
 button.hidden {
