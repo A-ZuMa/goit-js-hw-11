@@ -14,16 +14,18 @@ const elements = {
 elements.form.addEventListener('submit', handlerSubmit);
 elements.moreBtn.addEventListener('click', handlerClickLoad);
 
-let page;
-let onPage;
+// let page;
+// let onPage;
+let page = 1;
+let onPage = 40;
+let queryValue = '';
 
 async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
   const { findValue } = evt.target;
-  console.log('Evt-Target', evt.target);
-  page = 1;
-  onPage = 40;
+  queryValue = findValue.value; // Оновлено значення queryValue
+  //   console.log('Evt-Target', evt.target);
   try {
     const result = await fetchImg(findValue.value, onPage, page);
 
