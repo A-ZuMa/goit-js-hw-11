@@ -22,7 +22,8 @@ async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
   const { findValue } = evt.target;
-  queryValue = findValue.value; // Оновлено значення queryValue
+  // queryValue = findValue.value; // Оновлено значення queryValue
+  page = 1;
 
   try {
     const result = await fetchImg(findValue.value, onPage, page);
@@ -132,7 +133,7 @@ function lightScroll() {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: 700, // подаємо на 700px вверх
+    top: 700, // подаємо на 700px догори
     behavior: 'smooth', // плавна відмальовка переходу
   });
 }
