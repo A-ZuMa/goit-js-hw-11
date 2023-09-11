@@ -35,8 +35,12 @@ async function handlerSubmit(evt) {
       lightScroll();
 
       let lightbox = new SimpleLightbox('.gallery a', {
+        spinner: true,
         captionsData: 'alt',
-        captionDelay: 250,
+        captionDelay: 300,
+        animationSpeed: 300,
+        docClose: true,
+        disableScroll: true,
       });
 
       if (result.totalHits > onPage) {
@@ -65,8 +69,12 @@ async function handlerClickLoad() {
     lightScroll();
 
     let lightbox = new SimpleLightbox('.gallery a', {
+      spinner: true,
       captionsData: 'alt',
-      captionDelay: 250,
+      captionDelay: 300,
+      animationSpeed: 300,
+      docClose: true,
+      disableScroll: true,
       //   nav: 'false',
       //   navText: 'arrows',
     });
@@ -124,7 +132,7 @@ function lightScroll() {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: cardHeight * 2,
+    top: 700,
     behavior: 'smooth',
   });
 }
