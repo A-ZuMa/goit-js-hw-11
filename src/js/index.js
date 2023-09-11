@@ -14,8 +14,6 @@ const elements = {
 elements.form.addEventListener('submit', handlerSubmit);
 elements.moreBtn.addEventListener('click', handlerClickLoad);
 
-// let page;
-// let onPage;
 let page = 1;
 let onPage = 40;
 let queryValue = '';
@@ -25,16 +23,15 @@ async function handlerSubmit(evt) {
   elements.moreBtn.classList.add('hidden');
   const { findValue } = evt.target;
   queryValue = findValue.value; // Оновлено значення queryValue
-  //   console.log('Evt-Target', evt.target);
+
   try {
     const result = await fetchImg(findValue.value, onPage, page);
 
     if (result.hits.length > 0) {
       Notify.success(`Hooray! We found ${result.totalHits} images.`);
-      //   console.log(result.hits.length);
       elements.gallery.innerHTML = createMarkup(result.hits);
 
-      lightScroll();
+      lightScroll(); // Плавний скрол з опціями
 
       let lightbox = new SimpleLightbox('.gallery a', {
         spinner: true,
@@ -82,6 +79,7 @@ async function handlerClickLoad() {
     });
     lightbox.refresh();
 
+    // Додаємо сторінки до існуючих
     if (Math.ceil(result.totalHits / onPage) === page) {
       elements.moreBtn.classList.add('hidden');
       Notify.info("We're sorry, but you've reached the end of search results.");
@@ -90,7 +88,7 @@ async function handlerClickLoad() {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
   }
 }
-
+// Відмальовка HTML колекції
 function createMarkup(arr) {
   return arr
     .map(
@@ -134,7 +132,7 @@ function lightScroll() {
     .firstElementChild.getBoundingClientRect();
 
   window.scrollBy({
-    top: 700,
-    behavior: 'smooth',
+    top: 700, // подаємо на 700px вверх
+    behavior: 'smooth', // плавна відмальовка переходу
   });
 }
