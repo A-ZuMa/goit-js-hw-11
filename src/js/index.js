@@ -22,9 +22,6 @@ async function handlerSubmit(evt) {
   evt.preventDefault();
   elements.moreBtn.classList.add('hidden');
   const { findValue } = evt.target;
-  console.dir(findValue);
-  console.log(findValue.value);
-  // queryValue = findValue.value; // Оновлено значення queryValue
   page = 1;
   if (findValue.value.trim() === '') {
     Notify.warning('Hey! Please, type something to start.');
@@ -52,7 +49,7 @@ async function handlerSubmit(evt) {
 
       if (result.totalHits > onPage) {
         elements.moreBtn.classList.remove('hidden');
-        queryValue = findValue.value;
+        queryValue = findValue.value; // Оновлено значення queryValue
         return queryValue;
       }
     } else {
@@ -63,7 +60,6 @@ async function handlerSubmit(evt) {
     }
   } catch {
     Notify.failure('Oops! Something went wrong! Try reloading the page!');
-    // console.log('Length-', result.hits.length);
   }
 }
 
@@ -82,8 +78,6 @@ async function handlerClickLoad() {
       animationSpeed: 300,
       docClose: true,
       disableScroll: true,
-      //   nav: 'false',
-      //   navText: 'arrows',
     });
     lightbox.refresh();
 
