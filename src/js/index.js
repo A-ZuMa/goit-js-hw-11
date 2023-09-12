@@ -26,7 +26,7 @@ async function handlerSubmit(evt) {
   console.log(findValue.value);
   // queryValue = findValue.value; // Оновлено значення queryValue
   page = 1;
-  if (findValue.value === '') {
+  if (findValue.value.trim() === '') {
     Notify.warning('Hey! Please, type something to start.');
     return;
   }
